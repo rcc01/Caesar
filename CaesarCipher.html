@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Caesar Cipher</title>
+  </head>
+  <body>
+    <p>This is my page and it is going to be awesome!</p>
+    <textarea name="textbox1" cols="50" rows="5"> Hello! I am textbox 1 </textarea>
+    <textarea name="textbox2" cols="50" rows="5"> Hello! I am textbox 2 </textarea>
+    <br/>
+    <input type="submit"/>
+    <br/>
+    <button type="button" onclick="myFunction('Encoded!')">Encode! </button>
+
+    <p id="demo"></p>
+
+    <script>
+      function myFunction() {
+        document.getElementById('demo') .innerHTML = "Encoded!";
+      }
+    </script>
+    <br/>
+    <button type="button" onclick="myFunction2('Decoded!')">Decode! </button>
+
+    <p id="demo2"></p>
+
+    <script>
+      function myFunction2() {
+        document.getElementById('demo2') .innerHTML = "Decoded!";
+      }
+    </script>
+  </body>
+</html>
