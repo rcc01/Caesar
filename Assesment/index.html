@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Caesar Cipher</title>
+    <link rel="stylesheet" href="css/style.css"/>
+  </head>
+
+  <body>
+
+
+    <h1> Caesar Cipher - WeCode@Lloyds Assessment </h1>
+    <p> The Ceasar Cipher is a very ancient method of encryptation. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+
+    <a href="#">This is a link</a>
+
+    <!-- include a link to SW within a paragrah -->
+
+
+    <div >
+
+
+      <ul>
+        <li>
+          <p> Introduce the text you want to <strong> encode </strong>in the box below: </p>
+        </li>
+      </ul>
+
+
+    <textarea id="textToCodebox"  cols="50" rows="5"></textarea>
+    <br/>
+    <textarea id="shiftToEncode" cols="10" rows="5">Shift number?</textarea>
+    <!-- change it to dropdown??  -->
+    <br/>
+    <button type="button" onclick="encode('Encoded!')">Encode! </button>
+
+    <p id="demo"></p>
+
+    </div>
+
+
+
+    <div>
+    <ul>
+      <li>
+    <p> Introduce the text you want to <strong> decode </strong> in the box below: </p>
+      </li>
+    </ul>
+
+    <textarea id="textToDecode" cols="50" rows="5"></textarea>
+    <br/>
+    <textarea id="shiftToDecode" cols="10" rows="5">Shift number?</textarea>
+    <br/>
+    <button type="button" onclick="decode('Decoded!')">Decode! </button>
+
+    <p id="demo2"></p>
+  </div>
+
+
+    <script>
+      function encode() {
+        var text = document.getElementById('textToCodebox').value
+        var shiftToMove = document.getElementById('shiftToEncode').value
+        if(isNaN(shiftToMove) || shiftToMove < 0 || shiftToMove>text.length) {
+          alert("Shift must be numeric and between 0 to the lenght of the text");
+          return false;
+        }
+        var array_text = []
+        for(var i = 0; i<text.length; i++) {
+          array_text[i] = text[i]
+        }
+        var resultado = array_text.concat(array_text.splice(0, text.length - shiftToMove))
+        document.getElementById('demo') .innerHTML = resultado.join('')
+      }
+      function decode() {
+        var text = document.getElementById('textToDecode').value
+        var shiftToMove = document.getElementById('shiftToDecode').value
+        if(isNaN(shiftToMove) || shiftToMove < 0 || shiftToMove>text.length) {
+          alert("Shift must be numeric and between 0 to the lenght of the text");
+          return false;
+        }
+        var array_text = []
+        for(var i = 0; i<text.length; i++) {
+          array_text[i] = text[i]
+        }
+        var resultado = array_text.splice(shiftToMove, text.length - shiftToMove)
+        resultado = resultado.concat(array_text)
+        document.getElementById('demo2') .innerHTML = resultado.join('')
+      }
+    </script>
+
+  </body>
+</html>
