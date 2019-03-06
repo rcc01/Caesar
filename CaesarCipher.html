@@ -6,34 +6,60 @@
   </head>
   <body>
     <p>This is my page and it is going to be awesome!</p>
-    <textarea name="textbox1" cols="50" rows="5"> Hello! I am textbox 1 </textarea>
+    <textarea id="pepito" name="textbox1" cols="50" rows="5">Hello! I am textbox 1 </textarea>
     <br/>
-    <button type="button" onclick="myFunction('Encoded!')">Encode! </button>
+    <textarea id="shiftToEncode" cols="50" rows="5">Insert shift</textarea>
+    <br/>
+    <button type="button" onclick="encode('Encoded!')">Encode! </button>
 
     <p id="demo"></p>
 
-    <script>
-      function myFunction() {
-        document.getElementById('demo') .innerHTML = "Encoded!";
-      }
-    </script>
-
-    <textarea name="textbox2" cols="50" rows="5"> Hello! I am textbox 2 </textarea>
+    <textarea id="textToDecode" cols="50" rows="5"> Hello! I am textbox 2 </textarea>
     <br/>
-
-    <button type="button" onclick="myFunction2('Decoded!')">Decode! </button>
+    <textarea id="shiftToDecode" cols="50" rows="5">Insert shift</textarea>
+    <br/>
+    <button type="button" onclick="decode('Decoded!')">Decode! </button>
 
     <p id="demo2"></p>
 
     <script>
-      function myFunction2() {
-        document.getElementById('demo2') .innerHTML = "Decoded!";
+      function encode() {
+        var frutas = document.getElementById('pepito').value
+        var shiftToMove = document.getElementById('shiftToEncode').value
+
+        if(isNaN(shiftToMove) || shiftToMove < 0 || shiftToMove>frutas.length) {
+          alert("Shift must be numeric and between 0 to the lenght of the text");
+          return false;
+        }
+
+        var arrayFrutas = []
+        for(var i = 0; i<frutas.length; i++) {
+          arrayFrutas[i] = frutas[i]
+        }
+        var resultado = arrayFrutas.concat(arrayFrutas.splice(0, frutas.length - shiftToMove))
+
+        document.getElementById('demo') .innerHTML = resultado.join('')
+      }
+
+      function decode() {
+        var frutas = document.getElementById('textToDecode').value
+        var shiftToMove = document.getElementById('shiftToDecode').value
+
+        if(isNaN(shiftToMove) || shiftToMove < 0 || shiftToMove>frutas.length) {
+          alert("Shift must be numeric and between 0 to the lenght of the text");
+          return false;
+        }
+
+        var arrayFrutas = []
+        for(var i = 0; i<frutas.length; i++) {
+          arrayFrutas[i] = frutas[i]
+        }
+        var resultado = arrayFrutas.splice(shiftToMove, frutas.length - shiftToMove)
+        resultado = resultado.concat(arrayFrutas)
+
+        document.getElementById('demo2') .innerHTML = resultado.join('')
       }
     </script>
-
-    var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-    var alphabet2 = ["x","y","z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w"];
-
 
   </body>
 </html>
